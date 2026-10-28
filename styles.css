@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0b2a5b;
+  --color-brand: #1a6cf0;
+  --color-surface: #f3f6fc;
+  --color-line: #e4eaf4;
+  --color-ink: #14213d;
+  --color-mute: #6b7a99;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body { @apply bg-surface text-ink text-sm; }
