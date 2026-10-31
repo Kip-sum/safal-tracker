@@ -1,9 +1,11 @@
 import os, sqlite3, random, secrets
 from datetime import date, timedelta
 from flask import Flask, request, jsonify, g
+from flask_cors import CORS
 
 DB = os.path.join(os.path.dirname(__file__), "safal.db")
 app = Flask(__name__)
+CORS(app)
 TOKENS = set()
 ADMIN = ("admin@safal.co.ke", "admin123")
 
