@@ -27,11 +27,18 @@ def one(sql, args=()):
     r = db().execute(sql, args).fetchone()
     return dict(r) if r else None
 
+
 @app.before_request
 def auth():
+    # Allow CORS preflight requests
+    if request.method == "OPTIONS":
+        return None
+
+    # Protect API routes with authentication
     if request.path.startswith("/api") and request.path != "/api/login":
         if request.headers.get("Authorization", "").replace("Bearer ", "") not in TOKENS:
             return jsonify(error="Please sign in"), 401
+
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS customers(id INTEGER PRIMARY KEY, name TEXT, company TEXT, phone TEXT,
