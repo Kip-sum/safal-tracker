@@ -22,7 +22,7 @@ const mlabel = m => MON[+m.split("-")[1] - 1];
 
 async function api(path, body) {
   const t = localStorage.getItem("token");
-  const r = await fetch("/api" + path, { method: body ? "POST" : "GET",
+  const r = await fetch("https://safal-tracker.onrender.com/api" + path, { method: body ? "POST" : "GET",
     headers: { "Content-Type": "application/json", ...(t && { Authorization: "Bearer " + t }) },
     body: body && JSON.stringify(body) });
   const d = await r.json();
@@ -184,4 +184,5 @@ export default function App() {
       {page === "Dashboard" && <Dashboard />}
       {page === "Customers" && (cid ? <CustomerDetail id={cid} back={() => setCid(null)} /> : <Customers open={setCid} />)}
       {page === "Orders" && <Orders />}{page === "Sales" && <Sales />}</main></div>;
+
 }
